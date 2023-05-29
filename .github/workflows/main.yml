@@ -12,8 +12,8 @@ on:
     - cron: "50 9,21 * * *"
 
 env:
-  kernel_repository: PixelExperience-Devices/kernel_xiaomi_polaris
-  kernel_branch: thirteen
+  kernel_repository: xianG13222/D8G_Kernel
+  kernel_branch: main
   device: dipper
   defconfig: dipper_defconfig
   use_aosp_clang: false
@@ -113,13 +113,13 @@ jobs:
           PATH=/usr/lib/llvm-$clang_version/bin:$PATH
           echo PATH=$PATH >> $GITHUB_ENV
 
-      - name: setup kernelsu
-        run: |
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-          echo 'CONFIG_KPROBES=y' >> arch/arm64/configs/${{ env.defconfig }}
+      #- name: setup kernelsu
+        #run: |
+          #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          #echo 'CONFIG_KPROBES=y' >> arch/arm64/configs/${{ env.defconfig }}
 
-          cd KernelSU
-          git checkout ${{ needs.check_kernelsu_update.outputs.kernelsu_release }}
+          #cd KernelSU
+          #git checkout ${{ needs.check_kernelsu_update.outputs.kernelsu_release }}
 
       - name: export flags
         run: |
