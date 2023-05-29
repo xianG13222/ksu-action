@@ -125,13 +125,10 @@ jobs:
         run: |
           flags="O=out ARCH=arm64 LLVM=1 LLVM_IAS=1 CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-" 
           echo flags=$flags >> $GITHUB_ENV
-          export ARCH=arm64
-          #export SUBARCH=arm64
-          export PATH=/usr/lib/llvm-$clang_version/bin:$PATH
-          export CROSS_COMPILE=aarch64-linux-gnu- 
-          export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+          
       - name: make defconfig
         run: |
+          make mrproper
           make $flags ${{ env.defconfig }}
 
       - name: make
