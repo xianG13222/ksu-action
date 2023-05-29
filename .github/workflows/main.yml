@@ -113,18 +113,18 @@ jobs:
           PATH=/usr/lib/llvm-$clang_version/bin:$PATH
           echo PATH=$PATH >> $GITHUB_ENV
 
-      #- name: setup kernelsu
-        #run: |
-          #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-          #echo 'CONFIG_KPROBES=y' >> arch/arm64/configs/${{ env.defconfig }}
+      - name: setup kernelsu
+        run: |
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          echo 'CONFIG_KPROBES=y' >> arch/arm64/configs/${{ env.defconfig }}
 
-          #cd KernelSU
-          #git checkout ${{ needs.check_kernelsu_update.outputs.kernelsu_release }}
+          cd KernelSU
+          git checkout ${{ needs.check_kernelsu_update.outputs.kernelsu_release }}
 
       - name: export flags
         run: |
           flags="O=out ARCH=arm64 LLVM=1 LLVM_IAS=1 CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-" 
-          #echo flags=$flags >> $GITHUB_ENV
+          echo flags=$flags >> $GITHUB_ENV
           export ARCH=arm64
           #export SUBARCH=arm64
           export PATH=/usr/lib/llvm-$clang_version/bin:$PATH
