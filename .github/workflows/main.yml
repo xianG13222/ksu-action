@@ -1,8 +1,8 @@
 name: Build Kernel
 on:
-  push: https://github.com/xianG13222/ksu-action.git
+  push:
     branches:
-	- main
+	  - main
 jobs:
   build:
 	runs-on: ubuntu-18.04
