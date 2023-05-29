@@ -14,8 +14,8 @@ on:
 env:
   kernel_repository: xianG13222/D8G_Kernel
   kernel_branch: main
-  device: dipper
-  defconfig: dipper_defconfig
+  device: polaris
+  defconfig: polaris_defconfig
   use_aosp_clang: false
   clang_version: 15
 
