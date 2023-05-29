@@ -1,8 +1,8 @@
-name: Build Kernel
+name: Build Kernel H2OS
 on:
   push:
     branches:
-	  - main
+	  - makiras
 jobs:
   build:
 	runs-on: ubuntu-18.04
@@ -10,19 +10,19 @@ jobs:
 	  - name: Init Repo
 		run: |
 		  cd ~
-		  git clone https://github.com/xianG13222/D8G_Kernel.git -b main --depth=1
+		  git clone https://github.com/Makiras/op5.git -b makiras --depth=1
 	  - name: Build With Shell
 	    run: |
-		  cd ~/D8G_Kernel
+		  cd ~/op5
 		  bash build_full.sh
 	  - name: Package With AnyKernel
 		run: |
 		  cd ~
-		  cp D8G_Kernel/AnyKernel ./ -r
+		  cp op5/AnyKernel ./ -r
 		  cd AnyKernel/
-		  cp ../D8G_Kernel/out/arch/arm64/boot/Image.gz-dtb ./
+		  cp ../op5/out/arch/arm64/boot/Image.gz-dtb ./
 	  - name : Upload artifact
 	    uses: actions/upload-artifact@master
 	    with:
-		  name: D8G_Kernel.zip
+		  name: blu_spark_makiras_modified.zip
 		  path: /home/runner/AnyKernel/
